@@ -1,1 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriSense</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+  <div id="login-page">
+    <div class="auth-wrap">
+      <div class="auth-card">
+
+        <div class="auth-logo">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22V12M5 12C5 7 12 2 12 2s7 5 7 10a7 7 0 01-14 0z"/></svg>
+          </div>
+          <div>
+            <div class="logo-name">AgriSense</div>
+            <div class="logo-sub">Smart Farm Management System</div>
+          </div>
+        </div>
+
+        <h2 class="auth-title">Welcome back</h2>
+        <p class="auth-desc">Sign in to manage your farms</p>
+
+        <div id="login-msg"></div>
+
+        <form id="login-form">
+          <div class="field-group">
+            <label for="inp-email">Email Address</label>
+            <input type="email" id="inp-email" placeholder="you@farm.com" required>
+          </div>
+          <div class="field-group">
+            <label for="inp-pass">Password</label>
+            <input type="password" id="inp-pass" placeholder="••••••••" required>
+          </div>
+          <button type="submit" class="btn btn-green btn-block">Sign In</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="app-page" class="hidden">
+    <div class="layout">
+
+      <aside class="sidebar">
+
+        <div class="sb-brand">
+          <div class="sb-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22V12M5 12C5 7 12 2 12 2s7 5 7 10a7 7 0 01-14 0z"/></svg>
+          </div>
+          <div>
+            <div class="sb-name">AgriSense</div>
+            <div class="sb-tag">Farm Management</div>
+          </div>
+        </div>
+
+        <div class="sb-user">
+          <div class="user-avatar" id="user-avatar">AK</div>
+          <div>
+            <div class="user-name" id="user-name">Loading...</div>
+            <div class="user-role" id="user-role">User</div>
+          </div>
+        </div>
+
+        <nav class="sb-nav">
+          <span class="nav-section-label">Main</span>
+          <button class="nav-btn active" data-page="dashboard">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            Dashboard
+          </button>
+          <button class="nav-btn" data-page="farms">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Farms
+          </button>
+          <button class="nav-btn" data-page="fields">
+            <svg viewBox="0 0 24 24"><path d="M3 17l4-8 4 4 4-6 4 10"/><path d="M3 21h18"/></svg>
+            Fields
+          </button>
+          <button class="nav-btn" data-page="crops">
+            <svg viewBox="0 0 24 24"><path d="M12 22V12M5 12C5 7 12 2 12 2s7 5 7 10a7 7 0 01-14 0z"/></svg>
+            Crops
+          </button>
+          <button class="nav-btn" data-page="plantings">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3"/></svg>
+            Plantings
+          </button>
+          <button class="nav-btn" data-page="sensors">
+            <svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg>
+            Sensors
+          </button>
+          <button class="nav-btn" data-page="readings">
+            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Sensor Readings
+          </button>
+          <button class="nav-btn" data-page="equipment">
+            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+            Equipment
+          </button>
+
+          <span class="nav-section-label admin-only hidden">Admin</span>
+          <button class="nav-btn admin-only hidden" data-page="users">
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Users
+          </button>
+          <button class="nav-btn admin-only hidden" data-page="groups">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            User Groups
+          </button>
+        </nav>
+
+        <div class="sb-footer">
+          <button class="nav-btn nav-btn-danger" id="logout-btn">
+            <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Sign Out
+          </button>
+        </div>
+
+      </aside>
+
+      <div class="main-content">
+
+        <header class="top-bar">
+          <div>
+            <h1 class="page-title" id="page-title">Dashboard</h1>
+            <p class="page-sub" id="page-sub"></p>
+          </div>
+          <div id="page-action"></div>
+        </header>
+
+        <div class="page-body" id="page-body">
+          <div class="loading-msg">Loading...</div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal-box" id="modal-box">
+      <h2 id="modal-title">Modal</h2>
+      <div id="modal-alert"></div>
+      <div id="modal-body"></div>
+      <div class="modal-footer" id="modal-footer"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+
+</body>
+</html>
